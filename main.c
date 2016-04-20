@@ -3,11 +3,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-void app();
-void printMenu();
-void printProcessesID(int,int);
-void runSelected(int);
-
+// include main header file that has all function declaration
+#include "main.h"   
 
 int main() {
     // start the app
