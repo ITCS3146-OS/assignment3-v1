@@ -5,6 +5,11 @@
 * 3. List files in the current directory,
 * 4. Quit the program.
 
+### Used
+* Language: C
+* Build tool: make
+* Compiler: gcc
+
 ### How to run
 * write down on the terminal "make launch"
 
