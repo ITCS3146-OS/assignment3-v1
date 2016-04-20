@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void app();
 void printMenu();
+void printProcessesID(int,int);
 void runSelected(int);
 
 int main() {
@@ -12,12 +14,20 @@ int main() {
 
 void app() {
     int select = 0;
+    pid_t pid, ppid;
+    pid = getpid();
+    ppid = getppid();
     
     do {
+        printProcessesID(ppid, pid);
         printMenu();
         scanf("%d",&select);
         runSelected(select);
     } while(1);
+}
+
+void printProcessesID(int p1,int p2) {
+    printf("Parent process ID: %d, Child process ID: %d\n",p1,p2);
 }
 
 void printMenu() {
