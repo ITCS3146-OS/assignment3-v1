@@ -8,11 +8,13 @@ void printMenu();
 void printProcessesID(int,int);
 void runSelected(int);
 
+
 int main() {
-    
+    // start the app
     app();
 }   
 
+// application logic
 void app() {
     int select = 0, status;
     pid_t currentPid, childPid, ppid, tempPid;
@@ -29,16 +31,18 @@ void app() {
         } else {
             tempPid = fork();
             
+            // check for child process
             if(tempPid == 0) {
                 currentPid = getpid();
                 ppid = getppid();
                 printProcessesID(currentPid,ppid);
                 runSelected(select);
                 exit(0);
-            } else if( tempPid == -1) {
+            } else if( tempPid == -1) { // check fork() error
                 printf("Failed to Fork.");
             }
             else {
+                // wait child process to finish it's jobs
                 childPid = wait(&status);
                 printf("\n\n");
             }    
@@ -59,6 +63,7 @@ void printMenu() {
     printf("Enter: ");
 }
 
+// child process's system command to run
 void runSelected(int ask) {
     switch(ask) {
         case 1:
