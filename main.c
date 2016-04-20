@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 void app();
@@ -13,24 +14,44 @@ int main() {
 }   
 
 void app() {
-    int select = 0;
-    pid_t pid, ppid;
-    pid = getpid();
+    int select = 0, status;
+    pid_t currentPid, childPid, ppid, tempPid;
+    currentPid = getpid();
     ppid = getppid();
     
-    do {
-        printProcessesID(ppid, pid);
+    for(;;) {
+        printf("Current process ID: %d, Parent process ID: %d\n",currentPid, ppid);
         printMenu();
         scanf("%d",&select);
-        runSelected(select);
-    } while(1);
+        if(select >= 4) {
+            printf("App end\n");
+            exit(0);
+        } else {
+            tempPid = fork();
+            
+            if(tempPid == 0) {
+                currentPid = getpid();
+                ppid = getppid();
+                printProcessesID(currentPid,ppid);
+                runSelected(select);
+                exit(0);
+            } else if( tempPid == -1) {
+                printf("Failed to Fork.");
+            }
+            else {
+                childPid = wait(&status);
+                printf("\n\n");
+            }    
+        }
+    }
 }
 
 void printProcessesID(int p1,int p2) {
-    printf("Parent process ID: %d, Child process ID: %d\n",p1,p2);
+    printf("Child process ID: %d, Parent process ID: %d\n",p1,p2);
 }
 
 void printMenu() {
+    printf("Choose the function to be performed by the child:\n");
     printf("(1) Display current date and time\n");
     printf("(2) Display the calendar of the current month\n");
     printf("(3) List the files in the current directory\n");
@@ -49,8 +70,5 @@ void runSelected(int ask) {
         case 3:
             system("ls -l");    
             break;
-        case 4:
-            printf("App end\n");
-            exit(0);
     }
 }
