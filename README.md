@@ -13,6 +13,6 @@
 ### How to run
 * write down on the terminal "make launch"
 
-### Algorithm
+### App logic and algorithm.
 * Loop until app stops. Show the menu and ask the option from the app user in order to create new child process and do some sertain task while app loops.
 
