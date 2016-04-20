@@ -26,8 +26,8 @@ void app() {
                 printf("Menu 3\n");
                 break;
             case 4:
-                printf("App end");
-                exit(1);
+                printf("App end\n");
+                exit(0);
         }
     } while(1);
 }
