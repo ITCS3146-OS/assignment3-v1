@@ -1,0 +1,6 @@
+{
+  "name": "Assignment3-v1",
+  "tagline": "Write a program, based on parent-child cooperation, where the parent process offers the program user a menu whose options are to: 1. Display the current date and time, 2. Display the calendar for the current month, 3. List files in the current directory, 4. Quit the program.",
+  "body": "# assignment3-v1\r\n### Write a program, based on parent-child cooperation, where the parent process offers the program user a menu whose options are to: \r\n* 1. Display the current date and time, \r\n* 2. Display the calendar for the current month, \r\n* 3. List files in the current directory,\r\n* 4. Quit the program.\r\n\r\n### Used\r\n* Language: C\r\n* Build tool: make\r\n* Compiler: gcc\r\n\r\n### How to run\r\n* write down on the terminal \"make launch\"\r\n\r\n### App logic and algorithm.\r\n* Loop until app stops. Show the menu and ask the option from the app user in order to create new child process and do some sertain task while app loops.\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
